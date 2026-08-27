@@ -24,7 +24,8 @@ def home():
     return "Shattered Icons is online"
 
 def run_flask():
-    app.run(host="0.0.0.0", port=8080)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
 
 Thread(target=run_flask, daemon=True).start()
 
@@ -57,7 +58,13 @@ bot = commands.Bot(
 # ──────────────────────────────────────────────
 # MongoDB
 # ──────────────────────────────────────────────
-mongo_client = AsyncIOMotorClient(MONGO_URI)
+mongo_client = AsyncIOMotorClient(
+    MONGO_URI,
+    tls=True,
+    tlsAllowInvalidCertificates=True,  # Evita el error SSL en Render
+    serverSelectionTimeoutMS=30000
+)
+
 db = mongo_client["shattered_icons"]
 
 guilds_col = db["guilds"]
