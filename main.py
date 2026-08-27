@@ -505,11 +505,7 @@ async def on_command_error(ctx: commands.Context, error: commands.CommandError):
 # ──────────────────────────────────────────────
 PRESENCE_MESSAGES = [
     "Shattered Icons",
-    "?cmds para ver comandos",
-    "Protegiendo el servidor",
-    "Sistema de moderación activo",
-    "Bienvenidas configurables",
-    "Staff Team on duty",
+    "Dev: Supskevv",
 ]
 
 @tasks.loop(seconds=10)
